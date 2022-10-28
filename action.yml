@@ -1,21 +1,36 @@
 name: 'Get Timestamp Action'
 description: 'Get the time in the specified time zone'
-author: 'nanzm'
+author: 'boredland'
 branding:
   icon: arrow-right-circle
   color: gray-dark
 inputs:
   timeZone:
-    description: 'time zone'
+    description: 'linux time zone'
     required: false
-    default: 0
+    default: 'UTC'
   format:
     description: 'timestamp format'
     required: false
-    default: ''
+    default: 'YYYY-MM-DD HH:mm:ss'
 outputs:
   time:
     description: 'current time'
+    value: ${{ steps.time.outputs.value }}
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: "composite"
+  steps:
+    - id: time
+      shell: bash
+      env:
+        TZ: ${{ inputs.timeZone }}
+      run: |
+        TEMPLATE="${{ inputs.format }}"
+        TEMPLATE=${TEMPLATE/YYYY/%Y}
+        TEMPLATE=${TEMPLATE/MM/%m}
+        TEMPLATE=${TEMPLATE/DD/%d}
+        TEMPLATE=${TEMPLATE/HH/%H}
+        TEMPLATE=${TEMPLATE/mm/%M}
+        TEMPLATE=${TEMPLATE/ss/%S}
+        DATE=$(date +"$TEMPLATE")
+        echo "value=$DATE" >> $GITHUB_OUTPUT
