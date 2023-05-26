@@ -7,9 +7,9 @@ Get the time in the specified time zone
 ```yaml
       - name: Get Time
         id: time
-        uses: nanzm/get-time-action@v1.1
+        uses: boredland/get-time-action@master
         with:
-          timeZone: 8
+          timeZone: UTC+8
           format: 'YYYY-MM-DD-HH-mm-ss'
       - name: Usage
         env:
@@ -22,17 +22,14 @@ Get the time in the specified time zone
 
 | Parameter  | Required | Info                                                         |
 | ---------- | -------- | ------------------------------------------------------------ |
-| `timeZone` | `false`  | time Zone  Default: 0                                        |
-| `format`   | `false`  | timestamp format string  Default: ''                                    |
-
+| `timeZone` | `false`  | time Zone  Default: UTC                                        |
+| `format`   | `false`  | timestamp format string  Default:                                   |
 
 ## Outputs
 
 | Parameter   | Info                                                         |
 | ---------- | ------------------------------------------------------------ |
 | `time`   | time in the specified time zone|
-
-
 
 ## License
 

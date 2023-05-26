@@ -10,7 +10,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [10]
 
     steps:
       - name: Checkout Git Source
@@ -18,7 +17,7 @@ jobs:
 
       - name: test1
         id: time1
-        uses: nanzm/get-time-action@v1.1
+        uses: ./
 
       - name: test1-output
         env:
@@ -28,9 +27,9 @@ jobs:
 
       - name: test2
         id: time2
-        uses: nanzm/get-time-action@v1.1
+        uses: ./
         with:
-          timeZone: 8
+          timeZone: UTC+8
           format: 'YYYY-MM-DD_HH:mm:ss'
 
       - name: test2-output
