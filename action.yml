@@ -1,21 +1,21 @@
-name: 'Get Timestamp Action'
-description: 'Get the time in the specified time zone'
-author: 'boredland'
+name: "Get Timestamp Action"
+description: "Get the time in the specified time zone"
+author: "boredland"
 branding:
   icon: arrow-right-circle
   color: gray-dark
 inputs:
   timeZone:
-    description: 'linux time zone'
+    description: "linux time zone"
     required: false
-    default: 'UTC'
+    default: "UTC"
   format:
-    description: 'timestamp format'
+    description: "timestamp format"
     required: false
-    default: 'YYYY-MM-DD HH:mm:ss'
+    default: "YYYY-MM-DD HH:mm:ss"
 outputs:
   time:
-    description: 'current time'
+    description: "current time"
     value: ${{ steps.time.outputs.value }}
 runs:
   using: "composite"
